@@ -1,13 +1,33 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Hero } from "@/components/Hero";
+import { InfoCards } from "@/components/InfoCards";
+import { MapSection } from "@/components/MapSection";
+import { SocialShare } from "@/components/SocialShare";
+import { Footer } from "@/components/Footer";
+import { useEffect } from "react";
 
 const Index = () => {
+  useEffect(() => {
+    // Track page view with Google Analytics
+    if ((window as any).gtag) {
+      (window as any).gtag('event', 'page_view', {
+        page_path: window.location.pathname,
+      });
+    }
+
+    // Track page view with Facebook Pixel
+    if ((window as any).fbq) {
+      (window as any).fbq('track', 'PageView');
+    }
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <main className="min-h-screen">
+      <Hero />
+      <InfoCards />
+      <MapSection />
+      <SocialShare />
+      <Footer />
+    </main>
   );
 };
 
